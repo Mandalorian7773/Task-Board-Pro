@@ -42,47 +42,34 @@ Node.js: Ensure you have Node.js installed. Download Node.js
 
 npm or yarn: Package manager for Node.js.
 
-Backend Setup
+# Backend Setup
 Navigate to the Backend directory:
 
-bash
-Copy
-Edit
 cd Backend
 Install dependencies:
 
-bash
-Copy
-Edit
+# Run 
 npm install
+
 Start the backend server:
 
-bash
-Copy
-Edit
-npm start
+node server.js
+
 The backend server will start on http://localhost:5000 by default.
 
 Frontend Setup
+
 Open a new terminal window.
 
 Navigate to the Frontend directory:
 
-bash
-Copy
-Edit
 cd Frontend
 Install dependencies:
 
-bash
-Copy
-Edit
 npm install
 Start the frontend development server:
 
-bash
-Copy
-Edit
-npm start
+npm run dev
+
 The frontend application will start on http://localhost:3000 by default.
 
