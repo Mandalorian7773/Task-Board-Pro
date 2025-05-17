@@ -1,0 +1,398 @@
+.project-detail-container {
+  background-color: #222831;
+  color: #DFD0B8;
+  padding: 20px;
+  margin-left: 300px;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 50px auto;
+  margin-left: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Override Material-UI default styles */
+.MuiContainer-root {
+  background-color: #222831 !important;
+  color: #DFD0B8 !important;
+}
+
+.MuiPaper-root {
+  background-color: #222831 !important;
+  color: #DFD0B8 !important;
+}
+
+.MuiDialog-paper {
+  background-color: #222831 !important;
+  color: #DFD0B8 !important;
+  border-radius: 12px !important;
+}
+
+.MuiDialogTitle-root {
+  background-color: #393E46 !important;
+  border-bottom: 1px solid #948979 !important;
+  color: #DFD0B8 !important;
+}
+
+.MuiDialogContent-root {
+  padding: 24px !important;
+  background-color: #222831 !important;
+  color: #DFD0B8 !important;
+}
+
+.MuiDialogActions-root {
+  padding: 16px 24px !important;
+  border-top: 1px solid #948979 !important;
+  background-color: #393E46 !important;
+}
+
+.MuiDialogActions-root .MuiButton-contained {
+  background-color: #393E46 !important;
+  color: #DFD0B8 !important;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.MuiDialogActions-root .MuiButton-contained:hover {
+  background-color: #948979 !important;
+}
+
+.MuiDialogActions-root .MuiButton-text {
+  color: #DFD0B8 !important;
+}
+
+.MuiDialogActions-root .MuiButton-text:hover {
+  background-color: rgba(148, 137, 121, 0.1) !important;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #948979;
+}
+
+.project-header h1 {
+  color: #DFD0B8;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.project-header .project-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.project-header .MuiButton-contained {
+  background-color: #393E46 !important;
+  color: #DFD0B8 !important;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.project-header .MuiButton-contained:hover {
+  background-color: #948979 !important;
+}
+
+.project-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+
+.project-info {
+  background-color: #393E46;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #948979;
+}
+
+.project-info h2 {
+  color: #DFD0B8;
+  margin: 0 0 20px 0;
+  font-size: 1.5rem;
+}
+
+.project-info p {
+  color: #DFD0B8;
+  margin: 0;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+.project-members {
+  background-color: #393E46;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #948979;
+}
+
+.project-members h2 {
+  color: #DFD0B8;
+  margin: 0 0 20px 0;
+  font-size: 1.5rem;
+}
+
+.member-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.member-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #222831;
+  border-radius: 5px;
+  border: 1px solid #948979;
+}
+
+.member-item .member-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.member-item .member-info span {
+  color: #DFD0B8;
+}
+
+.member-item .member-role {
+  color: #948979;
+  font-size: 0.9rem;
+}
+
+.member-item .member-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.member-item .MuiIconButton-root {
+  color: #DFD0B8;
+}
+
+.member-item .MuiIconButton-root:hover {
+  color: #948979;
+}
+
+.add-member-form {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #948979;
+}
+
+.add-member-form .MuiTextField-root {
+  margin-bottom: 15px;
+}
+
+.add-member-form .MuiOutlinedInput-root {
+  background-color: #222831;
+  color: #DFD0B8;
+}
+
+.add-member-form .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: #948979;
+}
+
+.add-member-form .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #DFD0B8;
+}
+
+.add-member-form .MuiOutlinedInput-input {
+  color: #DFD0B8;
+}
+
+.add-member-form .MuiFormLabel-root {
+  color: #DFD0B8;
+}
+
+.add-member-form .MuiFormLabel-root.Mui-focused {
+  color: #DFD0B8;
+}
+
+.add-member-form .MuiButton-contained {
+  background-color: #393E46 !important;
+  color: #DFD0B8 !important;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.add-member-form .MuiButton-contained:hover {
+  background-color: #948979 !important;
+}
+
+.error-message {
+  color: #ff6b6b;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: rgba(255, 107, 107, 0.1);
+  border-radius: 5px;
+}
+
+/* Task List Container */
+.task-list-container {
+  background-color: #393E46;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 30px;
+  border: 1px solid #948979;
+}
+
+.task-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #948979;
+}
+
+.task-list-header h2 {
+  color: #DFD0B8;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Add Task Box */
+.add-task-box {
+  background-color: #393E46;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 30px;
+  border: 1px solid #948979;
+}
+
+.add-task-box h2 {
+  color: #DFD0B8;
+  margin: 0 0 20px 0;
+  font-size: 1.5rem;
+}
+
+.add-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-task-form .MuiTextField-root {
+  background-color: #DFD0B8;
+}
+
+.add-task-form .MuiOutlinedInput-root {
+  background-color: #DFD0B8;
+  color: #222831;
+}
+
+.add-task-form .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: #948979;
+}
+
+.add-task-form .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #393E46;
+}
+
+.add-task-form .MuiOutlinedInput-input {
+  color: #222831;
+}
+
+.add-task-form .MuiFormLabel-root {
+  color: #222831;
+}
+
+.add-task-form .MuiFormLabel-root.Mui-focused {
+  color: #393E46;
+}
+
+/* Join with Invite Code Box */
+.join-invite-box {
+  background-color: #393E46;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 30px;
+  border: 1px solid #948979;
+}
+
+.join-invite-box h2 {
+  color: #DFD0B8;
+  margin: 0 0 20px 0;
+  font-size: 1.5rem;
+}
+
+.join-invite-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.join-invite-form .MuiTextField-root {
+  background-color: #222831;
+}
+
+.join-invite-form .MuiOutlinedInput-root {
+  background-color: #222831;
+  color: #DFD0B8;
+}
+
+.join-invite-form .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: #948979;
+}
+
+.join-invite-form .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #DFD0B8;
+}
+
+.join-invite-form .MuiOutlinedInput-input {
+  color: #DFD0B8;
+}
+
+.join-invite-form .MuiFormLabel-root {
+  color: #DFD0B8;
+}
+
+.join-invite-form .MuiFormLabel-root.Mui-focused {
+  color: #DFD0B8;
+}
+
+/* Common Button Styles */
+.MuiButton-contained {
+  background-color: #393E46 !important;
+  color: #DFD0B8 !important;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.MuiButton-contained:hover {
+  background-color: #948979 !important;
+}
+
+@media (max-width: 768px) {
+  .project-detail-container {
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  .project-content {
+    grid-template-columns: 1fr;
+  }
+
+  .project-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .project-header .project-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+} 

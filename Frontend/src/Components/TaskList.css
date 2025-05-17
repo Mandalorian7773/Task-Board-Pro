@@ -1,0 +1,164 @@
+.task-list-container {
+  background-color: #222831;
+  color: #DFD0B8;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.task-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.task-card {
+  background-color: #393E46;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #948979;
+  transition: transform 0.2s;
+}
+
+.task-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.task-header h3 {
+  color: #DFD0B8;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.task-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #948979;
+}
+
+.task-priority {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.task-priority.high {
+  background-color: #f44336;
+  color: white;
+}
+
+.task-priority.medium {
+  background-color: #ff9800;
+  color: white;
+}
+
+.task-priority.low {
+  background-color: #4caf50;
+  color: white;
+}
+
+.task-due-date {
+  color: #948979;
+  font-size: 0.9rem;
+}
+
+.loading-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.error-message {
+  color: #ff6b6b;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: rgba(255, 107, 107, 0.1);
+  border-radius: 5px;
+}
+
+.no-tasks {
+  text-align: center;
+  padding: 40px;
+  color: #DFD0B8;
+  font-size: 1.2rem;
+}
+
+.MuiDialog-paper {
+  background-color: #222831 !important;
+  color: #DFD0B8 !important;
+}
+
+.MuiDialogTitle-root {
+  color: #DFD0B8 !important;
+}
+
+.MuiDialogContent-root {
+  background-color: #222831 !important;
+}
+
+.MuiTextField-root {
+  margin-bottom: 16px !important;
+}
+
+.MuiOutlinedInput-root {
+  background-color: #393E46 !important;
+  color: #DFD0B8 !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: #948979 !important;
+}
+
+.MuiInputLabel-root {
+  color: #DFD0B8 !important;
+}
+
+.MuiInputLabel-root.Mui-focused {
+  color: #DFD0B8 !important;
+}
+
+.MuiButton-root {
+  color: #DFD0B8 !important;
+}
+
+.MuiButton-contained {
+  background-color: #393E46 !important;
+}
+
+.MuiButton-contained:hover {
+  background-color: #948979 !important;
+}
+
+@media (max-width: 768px) {
+  .task-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .task-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .task-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+} 

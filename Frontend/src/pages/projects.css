@@ -1,0 +1,211 @@
+.projects-container {
+    background-color: #222831;
+    color: #DFD0B8;
+    padding: 20px;
+    margin-left: 300px;
+}
+
+.projects-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.projects-header h1 {
+    color: #DFD0B8;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.project-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.project-card {
+    background-color: #393E46;
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.2s;
+    cursor: pointer;
+    border: 1px solid #948979;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.project-card h2 {
+    color: #DFD0B8;
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+}
+
+.project-card p {
+    color: #DFD0B8;
+    margin: 0;
+    opacity: 0.8;
+}
+
+.project-card .project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #948979;
+}
+
+.project-card .project-meta span {
+    color: #DFD0B8;
+    font-size: 0.9rem;
+}
+
+.project-admin-info {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #948979;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project-admin-info p {
+    color: #DFD0B8;
+    font-weight: 500;
+}
+
+.project-members {
+    margin-top: 1rem;
+    color: #DFD0B8;
+    font-size: 0.9rem;
+}
+
+.project-actions .add-Btn1 {
+    background-color: #ffffff !important;
+    min-width: 40px !important;
+    padding: 8px !important;
+    color:white;
+}
+
+.add-Btn1 img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.add-project-button {
+    background-color: #393E46 !important;
+    color: #DFD0B8 !important;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.add-project-button:hover {
+    background-color: #bbbbbb !important;
+}
+
+
+.MuiDialog-paper {
+    background-color: #222831 !important;
+    border-radius: 12px !important;
+}
+
+.MuiDialogTitle-root {
+    background-color: #393E46;
+    border-bottom: 1px solid #948979;
+    color: #DFD0B8;
+}
+
+.MuiDialogContent-root {
+    padding: 24px !important;
+    background-color: #222831;
+    color: #DFD0B8;
+}
+
+.MuiDialogActions-root {
+    padding: 16px 24px !important;
+    border-top: 1px solid #948979;
+    background-color: #393E46;
+}
+
+.join-project-dialog .MuiDialog-paper {
+    background-color: #222831;
+    color: #DFD0B8;
+}
+
+.join-project-dialog .MuiDialogTitle-root {
+    color: #DFD0B8;
+}
+
+.join-project-dialog .MuiTextField-root {
+    margin-bottom: 20px;
+}
+
+.join-project-dialog .MuiOutlinedInput-root {
+    background-color: #393E46;
+    color: #DFD0B8;
+}
+
+.join-project-dialog .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-color: #948979;
+}
+
+.join-project-dialog .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #DFD0B8;
+}
+
+.join-project-dialog .MuiOutlinedInput-input {
+    color: #DFD0B8;
+}
+
+.join-project-dialog .MuiFormLabel-root {
+    color: #DFD0B8;
+}
+
+.join-project-dialog .MuiFormLabel-root.Mui-focused {
+    color: #DFD0B8;
+}
+
+.join-project-dialog .MuiButton-contained {
+    background-color: #393E46 !important;
+    color: #DFD0B8 !important;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.join-project-dialog .MuiButton-contained:hover {
+    background-color: #948979 !important;
+}
+
+.error-message {
+    color: #ff6b6b;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgba(255, 107, 107, 0.1);
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .projects-container {
+        padding-right: 0;
+    }
+    
+    .projects-content {
+        margin: 1rem;
+    }
+}
