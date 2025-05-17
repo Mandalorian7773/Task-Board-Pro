@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const http = require('http');
 const { Server } = require('socket.io');
 const path = require('path');
-const { verifyToken } = require('./middleware/auth.middleware');
+const { verifyToken } = require('./Middleware/auth.middleware');
 
 
 require('dotenv').config();
