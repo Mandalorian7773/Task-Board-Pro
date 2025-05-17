@@ -37,11 +37,11 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 });
 
-// Add indexes for better query performance
+
 userSchema.index({ firebaseUid: 1 }, { unique: true });
 userSchema.index({ email: 1 }, { unique: true });
 
-// Add a pre-save hook to ensure firebaseUid is set
+
 userSchema.pre('save', function(next) {
     if (!this.firebaseUid) {
         next(new Error('Firebase UID is required'));

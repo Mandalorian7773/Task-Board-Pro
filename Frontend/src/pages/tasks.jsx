@@ -73,7 +73,6 @@ function Tasks() {
                 throw new Error('Failed to update task status');
             }
 
-            // Update the task in the local state
             setTasks(tasks.map(task => 
                 task._id === taskId ? { ...task, status: newStatus } : task
             ));

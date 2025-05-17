@@ -5,7 +5,7 @@ const Project = require('../Models/project.model');
 const User = require('../Models/user.model');
 const { verifyToken } = require('../middleware/auth.middleware');
 
-// Middleware to check if user is admin
+
 const isAdmin = async (req, res, next) => {
     try {
         console.log('Checking admin status for user:', req.user);
@@ -21,7 +21,7 @@ const isAdmin = async (req, res, next) => {
             return res.status(400).json({ message: 'Project ID is required' });
         }
 
-        // Find project and populate admin field
+       
         const project = await Project.findById(req.body.project).populate('admin');
         console.log('Found project:', JSON.stringify(project, null, 2));
         
@@ -34,7 +34,7 @@ const isAdmin = async (req, res, next) => {
             return res.status(500).json({ message: 'Project has no admin assigned' });
         }
 
-        // Check if user is admin by comparing firebaseUid
+
         const isAdmin = project.admin.firebaseUid === req.user.uid;
         console.log('Admin check:', {
             projectAdminFirebaseUid: project.admin.firebaseUid,
@@ -52,7 +52,7 @@ const isAdmin = async (req, res, next) => {
     }
 };
 
-// Create a new task (admin only)
+
 router.post('/', verifyToken, isAdmin, async (req, res) => {
     try {
         console.log('Creating new task with data:', req.body);
@@ -65,7 +65,7 @@ router.post('/', verifyToken, isAdmin, async (req, res) => {
             });
         }
 
-        // Get user from database using firebaseUid
+  
         const user = await User.findOne({ firebaseUid: req.user.uid });
         console.log('Found user for task creation:', JSON.stringify(user, null, 2));
         
@@ -88,7 +88,7 @@ router.post('/', verifyToken, isAdmin, async (req, res) => {
         const savedTask = await task.save();
         console.log('Saved task:', JSON.stringify(savedTask, null, 2));
         
-        // Populate the task with user details
+      
         const populatedTask = await Task.findById(savedTask._id)
             .populate('assignedTo', 'name email')
             .populate('createdBy', 'name email');
@@ -101,7 +101,6 @@ router.post('/', verifyToken, isAdmin, async (req, res) => {
     }
 });
 
-// Get all tasks for a project
 router.get('/project/:projectId', verifyToken, async (req, res) => {
     try {
         console.log('Fetching tasks for project:', req.params.projectId);
@@ -119,10 +118,10 @@ router.get('/project/:projectId', verifyToken, async (req, res) => {
     }
 });
 
-// Get tasks assigned to a user
+
 router.get('/assigned', verifyToken, async (req, res) => {
     try {
-        // Get user from database using firebaseUid
+       
         const user = await User.findOne({ firebaseUid: req.user.uid });
         if (!user) {
             return res.status(401).json({ message: 'User not found' });
@@ -137,10 +136,10 @@ router.get('/assigned', verifyToken, async (req, res) => {
     }
 });
 
-// Update task status
+
 router.patch('/:taskId/status', verifyToken, async (req, res) => {
     try {
-        // Get user from database using firebaseUid
+     
         const user = await User.findOne({ firebaseUid: req.user.uid });
         if (!user) {
             return res.status(401).json({ message: 'User not found' });
@@ -163,7 +162,7 @@ router.patch('/:taskId/status', verifyToken, async (req, res) => {
     }
 });
 
-// Update task (admin only)
+
 router.put('/:taskId', verifyToken, isAdmin, async (req, res) => {
     try {
         const task = await Task.findById(req.params.taskId);
@@ -179,7 +178,7 @@ router.put('/:taskId', verifyToken, isAdmin, async (req, res) => {
     }
 });
 
-// Delete task (admin only)
+
 router.delete('/:taskId', verifyToken, isAdmin, async (req, res) => {
     try {
         const task = await Task.findById(req.params.taskId);

@@ -24,11 +24,10 @@ function Projects() {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    // Initialize socket connection
+  
     const newSocket = io(API_URL);
     setSocket(newSocket);
 
-    // Cleanup on unmount
     return () => newSocket.close();
   }, []);
 

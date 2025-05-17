@@ -1,17 +1,17 @@
 const admin = require('firebase-admin');
 const User = require('../Models/user.model');
 
-// Debug logging for environment variables
+
 console.log('Environment variables:');
 console.log('FIREBASE_PROJECT_ID:', process.env.FIREBASE_PROJECT_ID ? 'Set' : 'Not set');
 console.log('FIREBASE_CLIENT_EMAIL:', process.env.FIREBASE_CLIENT_EMAIL ? 'Set' : 'Not set');
 console.log('FIREBASE_PRIVATE_KEY:', process.env.FIREBASE_PRIVATE_KEY ? 'Set' : 'Not set');
 
-// Initialize Firebase Admin if not already initialized
+
 let firebaseApp;
 try {
   if (!admin.apps.length) {
-    // Load Firebase Admin SDK credentials from environment variables
+   
     const projectId = process.env.FIREBASE_PROJECT_ID;
     const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
     const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
@@ -38,7 +38,7 @@ try {
   }
 } catch (error) {
   console.error('Error initializing Firebase Admin SDK:', error);
-  process.exit(1); // Exit if Firebase Admin SDK initialization fails
+  process.exit(1); 
 }
 
 const verifyToken = async (req, res, next) => {
@@ -52,7 +52,7 @@ const verifyToken = async (req, res, next) => {
 
     console.log('Verifying token...');
     
-    // Verify the Firebase token
+
     const decodedToken = await admin.auth().verifyIdToken(token);
     console.log('Decoded Firebase token:', {
       uid: decodedToken.uid,
@@ -60,18 +60,18 @@ const verifyToken = async (req, res, next) => {
       name: decodedToken.name
     });
 
-    // Find or create the user in our database
+   
     let user = await User.findOne({ firebaseUid: decodedToken.uid });
     console.log('Existing user found:', user ? 'Yes' : 'No');
     
     if (!user) {
       console.log('Creating new user...');
-      // Create a new user if they don't exist
+
       user = new User({
         firebaseUid: decodedToken.uid,
         name: decodedToken.name || 'User',
         email: decodedToken.email,
-        password: 'firebase-auth', // Dummy password since we're using Firebase auth
+        password: 'firebase-auth', 
         type: 0
       });
       await user.save();
@@ -83,7 +83,7 @@ const verifyToken = async (req, res, next) => {
       return res.status(500).json({ message: 'Error creating user' });
     }
 
-    // Attach both the user object and the Firebase UID to the request
+
     req.user = {
       _id: user._id,
       firebaseUid: user.firebaseUid,

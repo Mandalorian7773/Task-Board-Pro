@@ -23,7 +23,7 @@ let siginUser = async (req, res) => {
             });
         }
 
-        // Find user by email
+   
         const user = await users.findOne({ email });
         if(!user) {
             return res.status(404).json({
@@ -32,7 +32,6 @@ let siginUser = async (req, res) => {
             });
         }
 
-        // Verify password
         const isPasswordMatched = await bcrypt.compare(password, user.password);
         if(!isPasswordMatched) {
             return res.status(401).json({
@@ -41,7 +40,7 @@ let siginUser = async (req, res) => {
             });
         }
 
-        // Generate JWT token
+
         const payload = {
             userId: user._id,
             type: user.type || 0,
@@ -90,7 +89,7 @@ let signUpUser = async (req, res)=> {
 
         const { name, email, password } = req.body;
 
-        // Check if user already exists
+    
         let existingUser = await users.findOne({ email });
         if(existingUser) {
             return res.status(400).json({
@@ -99,21 +98,21 @@ let signUpUser = async (req, res)=> {
             });
         }
 
-        // Hash password
+   
         const salt = await bcrypt.genSalt(11);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        // Create new user
+   
         const newUser = new users({
             name,
             email,
             password: hashedPassword
         });
 
-        // Save user to database
+     
         await newUser.save();
 
-        // Generate JWT token
+       
         const payload = {
             userId: newUser._id,
             type: newUser.type || 0,

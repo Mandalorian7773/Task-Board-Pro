@@ -7,7 +7,7 @@ const { verifyToken } = require('../Middleware/auth.middleware');
 
 const router = express.Router();
 
-// Create a new project
+
 router.post('/create', verifyToken, async (req, res) => {
     try {
         console.log('Creating new project with data:', req.body);
@@ -25,7 +25,7 @@ router.post('/create', verifyToken, async (req, res) => {
             return res.status(401).json({ message: 'User not authenticated' });
         }
         
-        // Generate a unique invite code
+      
         const inviteCode = crypto.randomBytes(4).toString('hex').toUpperCase();
         console.log('Generated invite code:', inviteCode);
         
@@ -42,7 +42,7 @@ router.post('/create', verifyToken, async (req, res) => {
         const savedProject = await project.save();
         console.log('Project saved successfully:', savedProject);
         
-        // Populate the admin and teamMembers fields
+       
         const populatedProject = await Project.findById(savedProject._id)
             .populate('admin', '_id name email firebaseUid')
             .populate('teamMembers', '_id name email firebaseUid');
@@ -60,7 +60,7 @@ router.post('/create', verifyToken, async (req, res) => {
     }
 });
 
-// Join project using invite code
+
 router.post('/join', verifyToken, async (req, res) => {
     try {
         const { inviteCode } = req.body;
@@ -70,7 +70,7 @@ router.post('/join', verifyToken, async (req, res) => {
             return res.status(404).json({ message: 'Project not found' });
         }
 
-        // Check if user is already a member
+      
         if (project.teamMembers.includes(req.user._id)) {
             return res.status(400).json({ message: 'Already a member of this project' });
         }
@@ -85,7 +85,7 @@ router.post('/join', verifyToken, async (req, res) => {
     }
 });
 
-// Get all projects for a user
+
 router.get('/', verifyToken, async (req, res) => {
     try {
         console.log('User from request:', req.user);
@@ -131,7 +131,7 @@ router.get('/', verifyToken, async (req, res) => {
     }
 });
 
-// Get project by ID
+
 router.get('/:id', verifyToken, async (req, res) => {
     try {
         console.log('Fetching project with ID:', req.params.id);
@@ -151,7 +151,7 @@ router.get('/:id', verifyToken, async (req, res) => {
             return res.status(404).json({ message: 'Project not found' });
         }
 
-        // Check if user is authorized to view the project
+    
         const isMember = project.teamMembers.some(member => {
             if (!member) return false;
             return (
@@ -192,7 +192,7 @@ router.get('/:id', verifyToken, async (req, res) => {
     }
 });
 
-// Update project (admin only)
+
 router.put('/:id', verifyToken, async (req, res) => {
     try {
         console.log('Updating project with ID:', req.params.id);
@@ -212,7 +212,7 @@ router.put('/:id', verifyToken, async (req, res) => {
             return res.status(404).json({ message: 'Project not found' });
         }
 
-        // Check if user is admin by comparing firebaseUid
+      
         if (project.admin.firebaseUid !== req.user.firebaseUid) {
             console.log('User not authorized to update project:', req.user._id);
             return res.status(403).json({ message: 'Only admin can update the project' });
@@ -236,7 +236,7 @@ router.put('/:id', verifyToken, async (req, res) => {
     }
 });
 
-// Remove member from project (admin only)
+
 router.delete('/:id/members/:memberId', async (req, res) => {
     try {
         const project = await Project.findById(req.params.id);
@@ -260,7 +260,7 @@ router.delete('/:id/members/:memberId', async (req, res) => {
     }
 });
 
-// Delete project (admin only)
+
 router.delete('/:id', async (req, res) => {
     try {
         const project = await Project.findById(req.params.id);

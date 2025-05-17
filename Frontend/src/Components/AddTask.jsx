@@ -90,7 +90,7 @@ function AddTask({ open, onClose, projectId, onTaskAdded }) {
         return;
       }
 
-      // Log the data being sent
+
       const taskData = {
         ...formData,
         project: projectId

@@ -8,7 +8,7 @@ const isAdmin = async (req, res, next) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Check if user type is 1 (admin)
+      
         if (user.type !== 1) {
             return res.status(403).json({ message: 'Access denied. Admin privileges required.' });
         }

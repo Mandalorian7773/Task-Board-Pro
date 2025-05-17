@@ -77,7 +77,7 @@ function ProjectDetail() {
         console.log('Current user:', user);
         
         setProject(data);
-        // Check if user is admin by comparing firebaseUid
+     
         const isUserAdmin = data.admin && data.admin.firebaseUid === user.uid;
         console.log('Is user admin:', isUserAdmin);
         setIsAdmin(isUserAdmin);
@@ -314,7 +314,7 @@ function ProjectDetail() {
         onClose={() => setAddTaskOpen(false)}
         projectId={id}
         onTaskAdded={(newTask) => {
-          // The TaskList component will handle the update through WebSocket
+
         }}
       />
     </div>

@@ -10,10 +10,10 @@ const { Server } = require('socket.io');
 const path = require('path');
 const { verifyToken } = require('./middleware/auth.middleware');
 
-// Load environment variables
+
 require('dotenv').config();
 
-// Debug environment variables
+
 console.log('Current working directory:', process.cwd());
 console.log('.env file path:', path.resolve(process.cwd(), '.env'));
 console.log('Environment variables loaded:');
@@ -45,7 +45,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(bodyParser.json());
 
-// WebSocket connection handling
+
 io.on('connection', (socket) => {
     console.log('A user connected');
 
@@ -62,7 +62,7 @@ io.on('connection', (socket) => {
     });
 });
 
-// Routes
+
 app.use("/user", userRouter);
 app.use('/projects', projectRoutes);
 app.use('/tasks', taskRoutes);

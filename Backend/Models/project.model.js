@@ -39,11 +39,11 @@ const projectSchema = new mongoose.Schema({
     timestamps: true
 });
 
-// Add index for better query performance
+
 projectSchema.index({ admin: 1 });
 projectSchema.index({ teamMembers: 1 });
 
-// Add a pre-save hook to ensure admin is set
+
 projectSchema.pre('save', function(next) {
     if (!this.admin) {
         next(new Error('Project must have an admin'));
