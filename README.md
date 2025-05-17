@@ -73,3 +73,11 @@ npm run dev
 
 The frontend application will start on http://localhost:3000 by default.
 
+
+
+<img width="1470" alt="Screenshot 2025-05-17 at 1 01 46 PM" src="https://github.com/user-attachments/assets/9347bc7b-54d8-41d7-b1fb-395f0b66d3dc" />
+
+<img width="1470" alt="Screenshot 2025-05-17 at 1 03 14 PM" src="https://github.com/user-attachments/assets/25871fd7-b103-49a1-82df-c3f7a59d493e" />
+
+<img width="1470" alt="Screenshot 2025-05-17 at 1 03 29 PM" src="https://github.com/user-attachments/assets/280da46e-4854-47cc-aa05-85e3f5dbcf1d" />
+
