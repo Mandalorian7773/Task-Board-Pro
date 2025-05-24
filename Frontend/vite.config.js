@@ -16,7 +16,8 @@ export default defineConfig({
       '@emotion/styled',
       'react',
       'react-dom',
-      'react-router-dom'
+      'react-router-dom',
+      'prop-types'
     ]
   },
   build: {
@@ -24,7 +25,8 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: false,
     commonjsOptions: {
-      include: [/@mui\/.*/, /@emotion\/.*/, /react.*/, /react-router-dom/]
+      include: [/@mui\/.*/, /@emotion\/.*/, /react.*/, /react-router-dom/, /prop-types/],
+      transformMixedEsModules: true
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
