@@ -2,11 +2,22 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      jsxRuntime: 'classic',
+      babel: {
+        plugins: [
+          ['@babel/plugin-transform-react-jsx', { runtime: 'classic' }]
+        ]
+      }
+    })
+  ],
   base: '/',
   resolve: {
     alias: {
-      'prop-types': 'prop-types/index.js'
+      'prop-types': 'prop-types/index.js',
+      'react': 'react',
+      'react-dom': 'react-dom'
     }
   },
   optimizeDeps: {
@@ -94,7 +105,10 @@ export default defineConfig({
       keepNames: true,
       define: {
         'process.env.NODE_ENV': '"production"'
-      }
+      },
+      jsx: 'transform',
+      jsxFactory: 'React.createElement',
+      jsxFragment: 'React.Fragment'
     }
   },
   server: {
