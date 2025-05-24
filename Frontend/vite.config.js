@@ -4,6 +4,9 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/',
+  optimizeDeps: {
+    include: ['firebase/app', 'firebase/auth', 'firebase/analytics']
+  },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -14,7 +17,7 @@ export default defineConfig({
           'react-vendor': ['react', 'react-dom'],
           'mui-core': ['@mui/material', '@mui/icons-material'],
           'mui-styles': ['@emotion/react', '@emotion/styled'],
-          'firebase': ['firebase'],
+          'firebase': ['firebase/app', 'firebase/auth', 'firebase/analytics'],
           'dnd': ['@hello-pangea/dnd'],
           'socket': ['socket.io-client']
         }
