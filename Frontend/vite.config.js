@@ -49,36 +49,34 @@ export default defineConfig({
       external: ['use-sync-external-store', 'use-sync-external-store/with-selector'],
       output: {
         manualChunks: (id) => {
-          // Core React bundle
+          // Bundle all React-related code together to ensure proper initialization
           if (id.includes('node_modules/react') || 
-              id.includes('node_modules/react-dom')) {
-            return 'react-core';
+              id.includes('node_modules/react-dom') ||
+              id.includes('node_modules/react-router-dom') ||
+              id.includes('node_modules/react-redux') ||
+              id.includes('node_modules/@emotion/react') ||
+              id.includes('node_modules/@emotion/styled') ||
+              id.includes('node_modules/@emotion/cache') ||
+              id.includes('node_modules/@emotion/serialize') ||
+              id.includes('node_modules/@emotion/unitless') ||
+              id.includes('node_modules/@emotion/utils') ||
+              id.includes('node_modules/@emotion/weak-memoize')) {
+            return 'react-vendor';
           }
 
-          // React ecosystem bundle
-          if (id.includes('node_modules/react-router-dom') ||
-              id.includes('node_modules/react-redux')) {
-            return 'react-ecosystem';
-          }
-
-          // Emotion bundle
-          if (id.includes('node_modules/@emotion')) {
-            return 'emotion';
-          }
-
-          // MUI bundle
+          // Bundle all MUI-related code together
           if (id.includes('node_modules/@mui')) {
-            return 'mui';
+            return 'mui-vendor';
           }
 
-          // Firebase bundle
+          // Bundle all Firebase-related code together
           if (id.includes('node_modules/firebase')) {
-            return 'firebase';
+            return 'firebase-vendor';
           }
 
-          // DnD bundle
+          // Bundle all DnD-related code together
           if (id.includes('node_modules/@hello-pangea/dnd')) {
-            return 'dnd';
+            return 'dnd-vendor';
           }
 
           // All other node_modules
