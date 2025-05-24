@@ -41,23 +41,26 @@ export default defineConfig({
       external: ['use-sync-external-store', 'use-sync-external-store/with-selector'],
       output: {
         manualChunks: (id) => {
+          // Group all React-related packages together
+          if (id.includes('node_modules/react') || 
+              id.includes('node_modules/react-dom') ||
+              id.includes('node_modules/react-router-dom')) {
+            return 'react-vendor';
+          }
+          
+          // Group all MUI and Emotion packages together
+          if (id.includes('node_modules/@mui') || 
+              id.includes('node_modules/@emotion')) {
+            return 'mui-vendor';
+          }
+          
+          // Group all Firebase packages together
+          if (id.includes('node_modules/firebase')) {
+            return 'firebase-vendor';
+          }
+          
+          // Group all other node_modules together
           if (id.includes('node_modules')) {
-            if (id.includes('@mui/material') || id.includes('@mui/icons-material')) {
-              return 'mui-core';
-            }
-            if (id.includes('@emotion')) {
-              return 'emotion';
-            }
-            if (id.includes('firebase')) {
-              return 'firebase';
-            }
-            if (id.includes('socket.io-client')) {
-              return 'socket';
-            }
-            if (id.includes('@hello-pangea/dnd')) {
-              return 'dnd';
-            }
-            // Put other node_modules in a vendor chunk
             return 'vendor';
           }
         }
