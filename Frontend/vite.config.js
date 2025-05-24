@@ -41,14 +41,18 @@ export default defineConfig({
       external: ['use-sync-external-store', 'use-sync-external-store/with-selector'],
       output: {
         manualChunks: (id) => {
-          // Core React and its ecosystem
+          // React must be loaded first
           if (id.includes('node_modules/react') || 
-              id.includes('node_modules/react-dom') ||
-              id.includes('node_modules/react-router-dom')) {
+              id.includes('node_modules/react-dom')) {
             return 'react-core';
           }
 
-          // Emotion core
+          // React Router after React
+          if (id.includes('node_modules/react-router-dom')) {
+            return 'react-router';
+          }
+
+          // Emotion core utilities
           if (id.includes('node_modules/@emotion/cache') ||
               id.includes('node_modules/@emotion/serialize') ||
               id.includes('node_modules/@emotion/unitless') ||
@@ -57,17 +61,17 @@ export default defineConfig({
             return 'emotion-core';
           }
 
-          // Emotion React
+          // Emotion React (depends on React)
           if (id.includes('node_modules/@emotion/react')) {
             return 'emotion-react';
           }
 
-          // Emotion Styled
+          // Emotion Styled (depends on Emotion React)
           if (id.includes('node_modules/@emotion/styled')) {
             return 'emotion-styled';
           }
 
-          // MUI Core
+          // MUI Core (depends on Emotion)
           if (id.includes('node_modules/@mui/material') ||
               id.includes('node_modules/@mui/system') ||
               id.includes('node_modules/@mui/base')) {
