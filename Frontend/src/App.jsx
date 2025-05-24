@@ -9,7 +9,7 @@ import Projects from './pages/projects';
 import ProjectDetail from './pages/ProjectDetail';
 import AddProject from './pages/addProject';
 import KanbanBoard from './Components/KanbanBoard';
-import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from './Components/ProtectedRoute';
 import Tasks from './pages/tasks';
 
 function AppContent() {
