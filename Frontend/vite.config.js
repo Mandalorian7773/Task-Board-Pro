@@ -41,31 +41,52 @@ export default defineConfig({
       external: ['use-sync-external-store', 'use-sync-external-store/with-selector'],
       output: {
         manualChunks: (id) => {
-          // Handle React and its ecosystem first
+          // Core React and its ecosystem
           if (id.includes('node_modules/react') || 
               id.includes('node_modules/react-dom') ||
               id.includes('node_modules/react-router-dom')) {
-            return 'react-vendor';
+            return 'react-core';
           }
 
-          // Handle Emotion separately from MUI
-          if (id.includes('node_modules/@emotion')) {
-            return 'emotion-vendor';
+          // Emotion core
+          if (id.includes('node_modules/@emotion/cache') ||
+              id.includes('node_modules/@emotion/serialize') ||
+              id.includes('node_modules/@emotion/unitless') ||
+              id.includes('node_modules/@emotion/utils') ||
+              id.includes('node_modules/@emotion/weak-memoize')) {
+            return 'emotion-core';
           }
 
-          // Handle MUI separately
-          if (id.includes('node_modules/@mui')) {
-            return 'mui-vendor';
+          // Emotion React
+          if (id.includes('node_modules/@emotion/react')) {
+            return 'emotion-react';
           }
 
-          // Handle Firebase
+          // Emotion Styled
+          if (id.includes('node_modules/@emotion/styled')) {
+            return 'emotion-styled';
+          }
+
+          // MUI Core
+          if (id.includes('node_modules/@mui/material') ||
+              id.includes('node_modules/@mui/system') ||
+              id.includes('node_modules/@mui/base')) {
+            return 'mui-core';
+          }
+
+          // MUI Icons
+          if (id.includes('node_modules/@mui/icons-material')) {
+            return 'mui-icons';
+          }
+
+          // Firebase
           if (id.includes('node_modules/firebase')) {
-            return 'firebase-vendor';
+            return 'firebase';
           }
 
-          // Handle DnD
+          // DnD
           if (id.includes('node_modules/@hello-pangea/dnd')) {
-            return 'dnd-vendor';
+            return 'dnd';
           }
 
           // All other node_modules
