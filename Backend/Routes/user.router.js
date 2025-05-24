@@ -2,7 +2,7 @@ const express = require("express");
 const { check } = require('express-validator')
 const { siginUser, signUpUser, updateUser, deleteUser } = require('../Controllers/user.controller')
 const jwt = require('jsonwebtoken');
-const auth = require('../middleware/auth');
+const { verifyToken } = require('../middleware/auth.middleware');
 const isAdmin = require("../middleware/isAdmin");
 
 let userRouter = express.Router();
@@ -18,9 +18,8 @@ userRouter.post("/signup", [
     check('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long')
 ],signUpUser)
 
-userRouter.patch("/:id",[auth, isAdmin],updateUser)
+userRouter.patch("/:id",[verifyToken, isAdmin],updateUser)
 
-userRouter.delete("/:id",[auth, isAdmin], deleteUser)
-
+userRouter.delete("/:id",[verifyToken, isAdmin], deleteUser)
 
 module.exports = userRouter;
