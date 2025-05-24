@@ -45,7 +45,7 @@ export default defineConfig({
           'mui-styles': ['@emotion/react', '@emotion/styled'],
           'firebase': ['firebase/app', 'firebase/auth', 'firebase/analytics'],
           'socket': ['socket.io-client'],
-          'dnd': ['@hello-pangea/dnd', 'react-redux']
+          'dnd': ['@hello-pangea/dnd']
         }
       }
     }
