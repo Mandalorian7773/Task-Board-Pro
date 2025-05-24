@@ -3,7 +3,7 @@ const { getAllProjects, createProject, getProjectById } = require('./../Controll
 const Project = require('../Models/project.model');
 const User = require('../Models/user.model');
 const crypto = require('crypto');
-const { verifyToken } = require('../Middleware/auth.middleware');
+const { verifyToken } = require('../middleware/auth.middleware');
 
 const router = express.Router();
 
