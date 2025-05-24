@@ -13,7 +13,10 @@ export default defineConfig({
       '@mui/material',
       '@mui/icons-material',
       '@emotion/react',
-      '@emotion/styled'
+      '@emotion/styled',
+      'react',
+      'react-dom',
+      'react-router-dom'
     ]
   },
   build: {
@@ -21,9 +24,10 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: false,
     commonjsOptions: {
-      include: [/@mui\/.*/, /@emotion\/.*/]
+      include: [/@mui\/.*/, /@emotion\/.*/, /react.*/, /react-router-dom/]
     },
     rollupOptions: {
+      external: ['react', 'react-dom'],
       output: {
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
