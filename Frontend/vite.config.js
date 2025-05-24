@@ -11,17 +11,24 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      '@emotion/react',
+      '@emotion/styled',
+      '@emotion/cache',
+      '@emotion/serialize',
+      '@emotion/unitless',
+      '@emotion/utils',
+      '@emotion/weak-memoize',
+      '@mui/material',
+      '@mui/icons-material',
+      '@mui/system',
+      '@mui/base',
       'firebase/app',
       'firebase/auth',
       'firebase/analytics',
       '@hello-pangea/dnd',
-      '@mui/material',
-      '@mui/icons-material',
-      '@emotion/react',
-      '@emotion/styled',
-      'react',
-      'react-dom',
-      'react-router-dom',
       'prop-types',
       'use-sync-external-store',
       'use-sync-external-store/with-selector',
@@ -32,8 +39,15 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    },
     commonjsOptions: {
-      include: [/@mui\/.*/, /@emotion\/.*/, /react.*/, /react-router-dom/, /prop-types/, /use-sync-external-store/, /react-redux/],
+      include: [/node_modules/],
       transformMixedEsModules: true,
       esmExternals: true
     },
@@ -41,40 +55,47 @@ export default defineConfig({
       external: ['use-sync-external-store', 'use-sync-external-store/with-selector'],
       output: {
         manualChunks: (id) => {
-          // Bundle all React-related code together
+          // Core React bundle
           if (id.includes('node_modules/react') || 
-              id.includes('node_modules/react-dom') ||
-              id.includes('node_modules/react-router-dom') ||
-              id.includes('node_modules/@emotion/react') ||
-              id.includes('node_modules/@emotion/styled') ||
-              id.includes('node_modules/@emotion/cache') ||
-              id.includes('node_modules/@emotion/serialize') ||
-              id.includes('node_modules/@emotion/unitless') ||
-              id.includes('node_modules/@emotion/utils') ||
-              id.includes('node_modules/@emotion/weak-memoize')) {
-            return 'react-vendor';
+              id.includes('node_modules/react-dom')) {
+            return 'react-core';
           }
 
-          // Bundle all MUI-related code together
+          // React ecosystem bundle
+          if (id.includes('node_modules/react-router-dom') ||
+              id.includes('node_modules/react-redux')) {
+            return 'react-ecosystem';
+          }
+
+          // Emotion bundle
+          if (id.includes('node_modules/@emotion')) {
+            return 'emotion';
+          }
+
+          // MUI bundle
           if (id.includes('node_modules/@mui')) {
-            return 'mui-vendor';
+            return 'mui';
           }
 
-          // Bundle all Firebase-related code together
+          // Firebase bundle
           if (id.includes('node_modules/firebase')) {
-            return 'firebase-vendor';
+            return 'firebase';
           }
 
-          // Bundle all DnD-related code together
+          // DnD bundle
           if (id.includes('node_modules/@hello-pangea/dnd')) {
-            return 'dnd-vendor';
+            return 'dnd';
           }
 
           // All other node_modules
           if (id.includes('node_modules')) {
             return 'vendor';
           }
-        }
+        },
+        // Ensure proper loading order
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
       }
     }
   },
