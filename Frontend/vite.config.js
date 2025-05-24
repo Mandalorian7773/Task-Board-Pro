@@ -41,56 +41,33 @@ export default defineConfig({
       external: ['use-sync-external-store', 'use-sync-external-store/with-selector'],
       output: {
         manualChunks: (id) => {
-          // React must be loaded first
+          // Bundle all React-related code together
           if (id.includes('node_modules/react') || 
-              id.includes('node_modules/react-dom')) {
-            return 'react-core';
-          }
-
-          // React Router after React
-          if (id.includes('node_modules/react-router-dom')) {
-            return 'react-router';
-          }
-
-          // Emotion core utilities
-          if (id.includes('node_modules/@emotion/cache') ||
+              id.includes('node_modules/react-dom') ||
+              id.includes('node_modules/react-router-dom') ||
+              id.includes('node_modules/@emotion/react') ||
+              id.includes('node_modules/@emotion/styled') ||
+              id.includes('node_modules/@emotion/cache') ||
               id.includes('node_modules/@emotion/serialize') ||
               id.includes('node_modules/@emotion/unitless') ||
               id.includes('node_modules/@emotion/utils') ||
               id.includes('node_modules/@emotion/weak-memoize')) {
-            return 'emotion-core';
+            return 'react-vendor';
           }
 
-          // Emotion React (depends on React)
-          if (id.includes('node_modules/@emotion/react')) {
-            return 'emotion-react';
+          // Bundle all MUI-related code together
+          if (id.includes('node_modules/@mui')) {
+            return 'mui-vendor';
           }
 
-          // Emotion Styled (depends on Emotion React)
-          if (id.includes('node_modules/@emotion/styled')) {
-            return 'emotion-styled';
-          }
-
-          // MUI Core (depends on Emotion)
-          if (id.includes('node_modules/@mui/material') ||
-              id.includes('node_modules/@mui/system') ||
-              id.includes('node_modules/@mui/base')) {
-            return 'mui-core';
-          }
-
-          // MUI Icons
-          if (id.includes('node_modules/@mui/icons-material')) {
-            return 'mui-icons';
-          }
-
-          // Firebase
+          // Bundle all Firebase-related code together
           if (id.includes('node_modules/firebase')) {
-            return 'firebase';
+            return 'firebase-vendor';
           }
 
-          // DnD
+          // Bundle all DnD-related code together
           if (id.includes('node_modules/@hello-pangea/dnd')) {
-            return 'dnd';
+            return 'dnd-vendor';
           }
 
           // All other node_modules
