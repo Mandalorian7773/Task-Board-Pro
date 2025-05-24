@@ -6,7 +6,9 @@ export default defineConfig({
   base: '/',
   resolve: {
     alias: {
-      'prop-types': 'prop-types/index.js'
+      'prop-types': 'prop-types/index.js',
+      'use-sync-external-store': 'use-sync-external-store/index.js',
+      'use-sync-external-store/with-selector': 'use-sync-external-store/with-selector.js'
     }
   },
   optimizeDeps: {
@@ -22,7 +24,10 @@ export default defineConfig({
       'react',
       'react-dom',
       'react-router-dom',
-      'prop-types'
+      'prop-types',
+      'use-sync-external-store',
+      'use-sync-external-store/with-selector',
+      'react-redux'
     ]
   },
   build: {
@@ -30,7 +35,7 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: false,
     commonjsOptions: {
-      include: [/@mui\/.*/, /@emotion\/.*/, /react.*/, /react-router-dom/, /prop-types/],
+      include: [/@mui\/.*/, /@emotion\/.*/, /react.*/, /react-router-dom/, /prop-types/, /use-sync-external-store/, /react-redux/],
       transformMixedEsModules: true,
       esmExternals: true
     },
@@ -42,7 +47,8 @@ export default defineConfig({
           'mui-core': ['@mui/material', '@mui/icons-material'],
           'mui-styles': ['@emotion/react', '@emotion/styled'],
           'firebase': ['firebase/app', 'firebase/auth', 'firebase/analytics'],
-          'socket': ['socket.io-client']
+          'socket': ['socket.io-client'],
+          'dnd': ['@hello-pangea/dnd', 'react-redux', 'use-sync-external-store']
         }
       }
     }
