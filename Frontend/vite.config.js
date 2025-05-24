@@ -51,10 +51,14 @@ export default defineConfig({
       external: ['use-sync-external-store', 'use-sync-external-store/with-selector'],
       output: {
         manualChunks: (id) => {
-          // Bundle all React-related code together to ensure proper initialization
+          // Core React bundle - must be loaded first
           if (id.includes('node_modules/react') || 
-              id.includes('node_modules/react-dom') ||
-              id.includes('node_modules/react-router-dom') ||
+              id.includes('node_modules/react-dom')) {
+            return 'react-core';
+          }
+
+          // React ecosystem bundle
+          if (id.includes('node_modules/react-router-dom') ||
               id.includes('node_modules/react-redux') ||
               id.includes('node_modules/@emotion/react') ||
               id.includes('node_modules/@emotion/styled') ||
@@ -63,7 +67,7 @@ export default defineConfig({
               id.includes('node_modules/@emotion/unitless') ||
               id.includes('node_modules/@emotion/utils') ||
               id.includes('node_modules/@emotion/weak-memoize')) {
-            return 'react-vendor';
+            return 'react-ecosystem';
           }
 
           // Bundle all MUI-related code together
