@@ -5,7 +5,12 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   optimizeDeps: {
-    include: ['firebase/app', 'firebase/auth', 'firebase/analytics']
+    include: [
+      'firebase/app',
+      'firebase/auth',
+      'firebase/analytics',
+      '@hello-pangea/dnd'
+    ]
   },
   build: {
     outDir: 'dist',
@@ -18,7 +23,6 @@ export default defineConfig({
           'mui-core': ['@mui/material', '@mui/icons-material'],
           'mui-styles': ['@emotion/react', '@emotion/styled'],
           'firebase': ['firebase/app', 'firebase/auth', 'firebase/analytics'],
-          'dnd': ['@hello-pangea/dnd'],
           'socket': ['socket.io-client']
         }
       }
