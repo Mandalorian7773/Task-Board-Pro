@@ -3,7 +3,7 @@ const router = express.Router();
 const Task = require('../Models/task.model');
 const Project = require('../Models/project.model');
 const User = require('../Models/user.model');
-const { verifyToken } = require('./middleware/auth.middleware');
+const { verifyToken } = require('../middleware/auth.middleware');
 
 
 const isAdmin = async (req, res, next) => {
