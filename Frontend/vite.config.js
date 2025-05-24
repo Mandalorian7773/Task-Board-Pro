@@ -9,13 +9,20 @@ export default defineConfig({
       'firebase/app',
       'firebase/auth',
       'firebase/analytics',
-      '@hello-pangea/dnd'
+      '@hello-pangea/dnd',
+      '@mui/material',
+      '@mui/icons-material',
+      '@emotion/react',
+      '@emotion/styled'
     ]
   },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
+    commonjsOptions: {
+      include: [/@mui\/.*/, /@emotion\/.*/]
+    },
     rollupOptions: {
       output: {
         manualChunks: {
