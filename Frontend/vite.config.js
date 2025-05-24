@@ -40,12 +40,26 @@ export default defineConfig({
     rollupOptions: {
       external: ['use-sync-external-store', 'use-sync-external-store/with-selector'],
       output: {
-        manualChunks: {
-          'mui-core': ['@mui/material', '@mui/icons-material'],
-          'mui-styles': ['@emotion/react', '@emotion/styled'],
-          'firebase': ['firebase/app', 'firebase/auth', 'firebase/analytics'],
-          'socket': ['socket.io-client'],
-          'dnd': ['@hello-pangea/dnd']
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('@mui/material') || id.includes('@mui/icons-material')) {
+              return 'mui-core';
+            }
+            if (id.includes('@emotion')) {
+              return 'emotion';
+            }
+            if (id.includes('firebase')) {
+              return 'firebase';
+            }
+            if (id.includes('socket.io-client')) {
+              return 'socket';
+            }
+            if (id.includes('@hello-pangea/dnd')) {
+              return 'dnd';
+            }
+            // Put other node_modules in a vendor chunk
+            return 'vendor';
+          }
         }
       }
     }
