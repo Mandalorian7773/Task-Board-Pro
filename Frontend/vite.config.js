@@ -6,9 +6,7 @@ export default defineConfig({
   base: '/',
   resolve: {
     alias: {
-      'prop-types': 'prop-types/index.js',
-      'use-sync-external-store': 'use-sync-external-store/index.js',
-      'use-sync-external-store/with-selector': 'use-sync-external-store/with-selector/index.js'
+      'prop-types': 'prop-types/index.js'
     }
   },
   optimizeDeps: {
@@ -40,15 +38,14 @@ export default defineConfig({
       esmExternals: true
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ['use-sync-external-store', 'use-sync-external-store/with-selector'],
       output: {
         manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
           'mui-core': ['@mui/material', '@mui/icons-material'],
           'mui-styles': ['@emotion/react', '@emotion/styled'],
           'firebase': ['firebase/app', 'firebase/auth', 'firebase/analytics'],
           'socket': ['socket.io-client'],
-          'dnd': ['@hello-pangea/dnd', 'react-redux', 'use-sync-external-store']
+          'dnd': ['@hello-pangea/dnd', 'react-redux']
         }
       }
     }
