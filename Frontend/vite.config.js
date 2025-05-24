@@ -8,7 +8,7 @@ export default defineConfig({
     alias: {
       'prop-types': 'prop-types/index.js',
       'use-sync-external-store': 'use-sync-external-store/index.js',
-      'use-sync-external-store/with-selector': 'use-sync-external-store/with-selector.js'
+      'use-sync-external-store/with-selector': 'use-sync-external-store/with-selector/index.js'
     }
   },
   optimizeDeps: {
