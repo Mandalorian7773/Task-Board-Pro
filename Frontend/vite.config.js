@@ -41,25 +41,34 @@ export default defineConfig({
       external: ['use-sync-external-store', 'use-sync-external-store/with-selector'],
       output: {
         manualChunks: (id) => {
-          // Group all React-related packages together
+          // Handle React and its ecosystem first
           if (id.includes('node_modules/react') || 
               id.includes('node_modules/react-dom') ||
               id.includes('node_modules/react-router-dom')) {
             return 'react-vendor';
           }
-          
-          // Group all MUI and Emotion packages together
-          if (id.includes('node_modules/@mui') || 
-              id.includes('node_modules/@emotion')) {
+
+          // Handle Emotion separately from MUI
+          if (id.includes('node_modules/@emotion')) {
+            return 'emotion-vendor';
+          }
+
+          // Handle MUI separately
+          if (id.includes('node_modules/@mui')) {
             return 'mui-vendor';
           }
-          
-          // Group all Firebase packages together
+
+          // Handle Firebase
           if (id.includes('node_modules/firebase')) {
             return 'firebase-vendor';
           }
-          
-          // Group all other node_modules together
+
+          // Handle DnD
+          if (id.includes('node_modules/@hello-pangea/dnd')) {
+            return 'dnd-vendor';
+          }
+
+          // All other node_modules
           if (id.includes('node_modules')) {
             return 'vendor';
           }
