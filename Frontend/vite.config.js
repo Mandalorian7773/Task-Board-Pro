@@ -89,6 +89,12 @@ export default defineConfig({
         chunkFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]'
       }
+    },
+    esbuildOptions: {
+      keepNames: true,
+      define: {
+        'process.env.NODE_ENV': '"production"'
+      }
     }
   },
   server: {
